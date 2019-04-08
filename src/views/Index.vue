@@ -12,7 +12,7 @@
                 </div>
                 <div class="right">
                     <el-button type="primary" plain icon="el-icon-edit">保存</el-button>
-                    <el-button type="primary" plain icon="el-icon-view">预览</el-button>
+                    <el-button type="primary" plain icon="el-icon-view" @click="dialogVisible = true">预览</el-button>
                 </div>
             </div>
         </el-header>
@@ -44,14 +44,6 @@
                 <div class="middle">
                     <div class="edit-content">
                         <draggable element="div" v-model="items" @update="handleEnd" v-bind="{animation: 200}">
-                            <!-- <div v-for="(item,index) in items" 
-                                :key="index" 
-                                :is="item.component" 
-                                :data="item.data" 
-                                @deleteItem="deleteItem(index)"
-                                @click.native="clickCurrent(index)" 
-                                :class="{active: current == index}">
-                            </div> -->
                             <transition-group type="transition" :name="'fist-list'" key="drag-transition">
                                 <div v-for="(item,index) in items" 
                                     :key="item.component + '-' + index" 
@@ -74,12 +66,37 @@
                 </div>
             </el-main>
         </el-container>
+
+        <el-dialog
+            title="预览"
+            :visible.sync="dialogVisible"
+            width="60%"
+            :lock-scroll="true"
+            :append-to-body="true">
+            <!-- <div>{{format(items)}}</div> -->
+            <el-input class="scroll" type="textarea" autosize :value="format(items)"></el-input>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary"
+                    v-clipboard:copy="format(items)"
+                    v-clipboard:success="onCopy"
+                    v-clipboard:error="onError">复 制</el-button>
+            </span>
+        </el-dialog>
     </el-container>
 </template>
 <style lang="scss" scoped>
 .drag {
     height: 60px;
     border: 2px dashed green;
+}
+.scroll /deep/ textarea {
+    max-height: 300px;
+    overflow: auto;
+}
+
+/deep/ .w-e-text-container {
+    z-index: 999!important;
 }
 </style>
 
@@ -103,27 +120,28 @@ export default {
         return {
             activeNames: ['1', '2'],
             items: [
-                {
-                    component: 'editor-component',
-                    data: {
-                        html: '<p>文本测试框1</p>'
-                    }
-                },
-                {
-                    component: 'empty-component',
-                    data: {
-                        height: 50,
-                        background: "#000000"
-                    }
-                },
-                {
-                    component: 'editor-component',
-                    data: {
-                        html: '<p>文本测试框1</p>'
-                    }
-                }
+                // {
+                //     component: 'editor-component',
+                //     data: {
+                //         html: '<p>文本测试框1</p>'
+                //     }
+                // },
+                // {
+                //     component: 'empty-component',
+                //     data: {
+                //         height: 50,
+                //         background: "#000000"
+                //     }
+                // },
+                // {
+                //     component: 'editor-component',
+                //     data: {
+                //         html: '<p>文本测试框1</p>'
+                //     }
+                // }
             ],
             current: 0,
+            dialogVisible: false
         }
     },
     methods: {
@@ -141,7 +159,7 @@ export default {
             this.items.push({
                 component: 'editor-component',
                 data: {
-                    html: '<p><i>请在此输入文本...</i></p>'
+                    html: '<p style="text-align: left;"><i>请在此输入文本...</i></p>'
                 }
             });
             this.current = this.items.length - 1;
@@ -157,7 +175,17 @@ export default {
         },
         handleEnd(event) {
             this.current = event.newIndex;
-        }
+        },
+        format(items){
+            // const json = JSON.parse(items);
+            return JSON.stringify(items, null, "\t");
+        },
+        onError() {
+            this.$message('复制失败');
+        },
+        onCopy() {
+            this.$message('复制成功');
+        },
     },
 }
 </script>

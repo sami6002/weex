@@ -28,6 +28,7 @@ export default {
     mounted () {
         this.editor = new Editor('#editorId');
         this.editor.customConfig.onchange = (html) => {
+            console.log(html);
             this.$emit('changeData', {html});
         }
         this.editor.customConfig.menus = [

@@ -19,8 +19,14 @@ img {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+    // text-align: center   ;
     color: #2c3e50;
+    font-size: 14px;
+    line-height: 20px;
+
+    input {
+        font-size: 14px;
+    }
 }
 
 $main-color: #409EFF;
@@ -91,6 +97,7 @@ $main-color: #409EFF;
         border-bottom: 1px solid #3d4447;
         cursor: pointer;
         color: #9c9e9f;
+        text-align: center;
         &.active {
             color: #ffffff;
             position: relative;
@@ -159,21 +166,29 @@ $main-color: #409EFF;
     .middle {
         position: relative;
         width: calc(100% - 315px - 405px);
+        overflow: auto;
         .edit-content {
+            // width: 320px;
+            // height: 644px;
             width: 375px;
             height: 667px;
+            margin: 10px auto;
             box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.1);
             background: #ffffff;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -334px;
-            margin-left: -188px;
+            // position: absolute;
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%, -50%);
             z-index: 1;
             box-sizing: border-box;
-            border-radius: 30px;
-            overflow: auto;
-            padding: 30px 10px;
+            // border-radius: 30px;
+            // padding: 72px 18px;
+            // background: url('../iphone.png') no-repeat center/contain; 
+
+            > div {
+                height: 100%;
+                overflow: auto;
+            }
 
             .edit-item {
                 box-sizing: border-box;
@@ -188,6 +203,7 @@ $main-color: #409EFF;
                     border: 2px dashed $main-color;
                     pointer-events: none;
                     content: '';
+                    z-index: 101;
                 }
                 &.active {
                     .item-act {
@@ -199,7 +215,7 @@ $main-color: #409EFF;
                     position: absolute;
                     top: 1px;
                     right: 1px;
-                    z-index: 1;
+                    z-index: 100;
                     visibility: hidden;
                     opacity: 0;
                     transition: 0.3s;

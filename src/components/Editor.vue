@@ -12,6 +12,7 @@
 <style lang="scss" scoped>
     .item-con {
         min-height: 30px;
+        padding: 14px;
     }
 </style>
 

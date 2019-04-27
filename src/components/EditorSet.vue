@@ -32,22 +32,22 @@ export default {
             this.$emit('changeData', {html});
         }
         this.editor.customConfig.menus = [
-            'head',
+            // 'head',
             'bold',
             'fontSize',
             'fontName',
             'italic',
             'underline',
-            'strikeThrough',
+            // 'strikeThrough',
             'foreColor',
             'backColor',
             'link',
-            'list',
+            // 'list',
             'justify',
             'liheHeight',
-            'emoticon',
-            'undo',
-            'redo'
+            // 'emoticon',
+            // 'undo',
+            // 'redo'
         ] 
         this.editor.create();
         this.editor.txt.html(this.data.html);

@@ -7,7 +7,7 @@
             <el-form-item label="空白高度：">
                 <el-slider v-model="form.height" @change="changeData()"></el-slider>
             </el-form-item>
-            <el-form-item label="背景颜色：" style="text-align: left;">
+            <el-form-item label="背景颜色：">
                 <el-color-picker v-model="form.background" @change="changeData()"></el-color-picker>
             </el-form-item>
         </el-form>

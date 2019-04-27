@@ -2,7 +2,8 @@
     <el-container>
         <el-header>
             <div class="logo">
-                <img src="../assets/logo.png" width="40" />
+                <!-- <img src="../assets/logo.png" width="40" /> -->
+                W
             </div>
             <div class="top-bar">
                 <div class="left"></div>
@@ -30,12 +31,54 @@
                         <el-collapse-item title="常用模块" name="1">
                             <ul class="gird">
                                 <li class="item" @click="addEmpty()">
-                                    <i class="el-icon-tickets"></i>
+                                    <i class="el-icon-news"></i>
                                     <p>空白模块</p>
                                 </li>
                                 <li class="item">
                                     <i class="el-icon-tickets" @click="addEditor()"></i>
                                     <p>文本模块</p>
+                                </li>
+                                <li class="item">
+                                    <i class="el-icon-search" @click="addSearch()"></i>
+                                    <p>搜索模块</p>
+                                </li>
+                                <li class="item">
+                                    <el-upload action=""
+                                        :on-change="handleChange"
+                                        :auto-upload="false"
+                                        :show-file-list="false"
+                                        list-type="picture"
+                                        accept="image/jpeg,image/jpg,image/gif,image/png,image/bmp">
+                                        <i class="el-icon-picture"></i>
+                                        <p>图片模块</p>
+                                    </el-upload>
+                                </li>
+                                <li class="item">
+                                    <el-upload action=""
+                                        :on-change="handleCarouselChange"
+                                        :auto-upload="false"
+                                        :show-file-list="false"
+                                        list-type="picture"
+                                        accept="image/jpeg,image/jpg,image/gif,image/png,image/bmp">
+                                        <i class="el-icon-picture"></i>
+                                        <p>轮播模块</p>
+                                    </el-upload>
+                                </li>
+                                <li class="item">
+                                    <i class="el-icon-menu" @click="navVisible=true"></i>
+                                    <p>导航模块</p>
+                                </li>
+                                <li class="item" @click="addTitle()">
+                                    <i class="el-icon-menu"></i>
+                                    <p>标题模块</p>
+                                </li>
+                                <li class="item" @click="addVideo()">
+                                    <i class="el-icon-menu"></i>
+                                    <p>视频模块</p>
+                                </li>
+                                <li class="item" @click="addGoodsList()">
+                                    <i class="el-icon-menu"></i>
+                                    <p>商品列表</p>
                                 </li>
                             </ul>
                         </el-collapse-item>
@@ -49,7 +92,12 @@
                                     :key="item.component + '-' + index" 
                                     :is="item.component" 
                                     :data="item.data" 
+                                    :innerItem="innerItem"
+                                    :outerCurrent="current"
+                                    :outerIndex="index"
                                     @deleteItem="deleteItem(index)"
+                                    @clickInnerItem="clickInnerItem"
+                                    @deleteInnerItem="deleteInnerItem"
                                     @click.native="clickCurrent(index)" 
                                     :class="{active: current == index}">
                                 </div>
@@ -60,7 +108,12 @@
                 <div class="right">
                     <div v-for="(item,index) in items" :key="index" >
                         <!-- <keep-alive> -->
-                            <div :is="'set-' + item.component" :data="item.data" @changeData="changeData(arguments, item)" v-if="index == current" :key="'set-' + item.component + '-' + index"></div>
+                            <div :is="'set-' + item.component" 
+                                :data="item.data" 
+                                @changeData="changeData(arguments, item)" 
+                                v-if="index == current" 
+                                :innerItem="innerItem"
+                                :key="'set-' + item.component + '-' + index"></div>
                         <!-- </keep-alive> -->
                     </div>
                 </div>
@@ -83,6 +136,26 @@
                     v-clipboard:error="onError">复 制</el-button>
             </span>
         </el-dialog>
+
+        <el-dialog
+            title="导航设置"
+            :visible.sync="navVisible"
+            width="30%"
+            :lock-scroll="true"
+            :append-to-body="true">
+            <el-form>
+                <el-form-item label="显示行数">
+                    <el-input-number v-model="navigation.row" :min="1" :max="2"></el-input-number>
+                </el-form-item>
+                <el-form-item label="显示列数">
+                    <el-input-number v-model="navigation.col" :min="4" :max="5"></el-input-number>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="navVisible = false">取 消</el-button>
+                <el-button type="primary" @click="addNavigation()">添 加</el-button>
+            </span>
+        </el-dialog>
     </el-container>
 </template>
 <style lang="scss" scoped>
@@ -93,6 +166,12 @@
 .scroll /deep/ textarea {
     max-height: 300px;
     overflow: auto;
+}
+
+.logo {
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
 }
 
 /deep/ .w-e-text-container {
@@ -106,6 +185,20 @@ import Empty from '@/components/Empty.vue';
 import EmptySet from '@/components/EmptySet.vue';
 import Editor from '@/components/Editor.vue'
 import EditorSet from '@/components/EditorSet.vue'
+import Search from '@/components/Search.vue'
+import SearchSet from '@/components/SearchSet.vue'
+import Picture from '@/components/Picture.vue'
+import PictureSet from '@/components/PictureSet.vue'
+import Carousel from '@/components/Carousel.vue'
+import CarouselSet from '@/components/CarouselSet.vue'
+import Navigation from '@/components/Navigation.vue'
+import NavigationSet from '@/components/NavigationSet.vue'
+import Title from '@/components/Title.vue'
+import TitleSet from '@/components/TitleSet.vue'
+import Video from '@/components/Video.vue'
+import VideoSet from '@/components/VideoSet.vue'
+import GoodsList from '@/components/GoodsList.vue';
+import GoodsListSet from '@/components/GoodsListSet.vue';
 
 export default {
     name: 'index',
@@ -114,34 +207,34 @@ export default {
         'set-empty-component': EmptySet,
         'editor-component': Editor,
         'set-editor-component': EditorSet,
+        'search-component': Search,
+        'set-search-component': SearchSet,
+        'picture-component': Picture,
+        'set-picture-component': PictureSet,
+        'carousel-component': Carousel,
+        'set-carousel-component': CarouselSet,
+        'navigation-component': Navigation,
+        'set-navigation-component': NavigationSet,
+        'title-component': Title,
+        'set-title-component': TitleSet,
+        'video-component': Video,
+        'set-video-component': VideoSet,
+        'goodslist-component': GoodsList,
+        'set-goodslist-component': GoodsListSet,
         draggable,
     },
     data() {
         return {
             activeNames: ['1', '2'],
-            items: [
-                // {
-                //     component: 'editor-component',
-                //     data: {
-                //         html: '<p>文本测试框1</p>'
-                //     }
-                // },
-                // {
-                //     component: 'empty-component',
-                //     data: {
-                //         height: 50,
-                //         background: "#000000"
-                //     }
-                // },
-                // {
-                //     component: 'editor-component',
-                //     data: {
-                //         html: '<p>文本测试框1</p>'
-                //     }
-                // }
-            ],
+            items: [],
             current: 0,
-            dialogVisible: false
+            dialogVisible: false,
+            navVisible: false,
+            navigation: {
+                row: 1,
+                col: 4
+            },
+            innerItem: -1,
         }
     },
     methods: {
@@ -149,8 +242,8 @@ export default {
             this.items.push({
                 component: 'empty-component',
                 data: {
-                    height: 30,
-                    background: '#ffffff'
+                    height: 16,
+                    background: '#f4f4f4'
                 }
             });
             this.current = this.items.length - 1;
@@ -159,7 +252,119 @@ export default {
             this.items.push({
                 component: 'editor-component',
                 data: {
-                    html: '<p style="text-align: left;"><i>请在此输入文本...</i></p>'
+                    html: '<p><i>请在此输入文本...</i></p>'
+                }
+            });
+            this.current = this.items.length - 1;
+        },
+        addSearch() {
+            this.items.push({
+                component: 'search-component',
+                data: {
+                    placeholder: '请输入关键字',
+                    inputBackground: '#ffffff',
+                    background: '#ffffff',
+                    borderColor: '#f2f2f2',
+                }
+            });
+            this.current = this.items.length - 1;
+        },
+        addPicture(url) {
+            this.items.push({
+                component: 'picture-component',
+                data: {
+                    picture: url,
+                    height: 180,
+                    caption: '描述文字',
+                    color: '',
+                    background: '',
+                    fontSize: 14,
+                    textAlign: 'left',
+                    padding: 10
+                }
+            });
+            this.current = this.items.length - 1;
+        },
+        addCarousel(item) {
+            this.items.push({
+                component: 'carousel-component',
+                data: {
+                    images: [item],
+                    height: 180,
+                }
+            });
+            this.current = this.items.length - 1;
+        },
+        addNavigation() {
+            const items = [];
+            const nums = this.navigation.row * this.navigation.col;
+            for (let index = 0; index < nums; index++) {
+                items.push({
+                    icon: 'all',
+                    label: '类目' + (index + 1),
+                    background: '',
+                });
+            }
+            this.items.push({
+                component: 'navigation-component',
+                data: {
+                    items: items,
+                    col: this.navigation.col,
+                    background: '#ffffff',
+                    color: '#4a4a4a'
+                }
+            });
+            this.navVisible = false;
+            this.current = this.items.length - 1;
+        },
+        addTitle() {
+            this.items.push({
+                component: 'title-component',
+                data: {
+                    title: '主标题',
+                    description: '副标题',
+                    flow: 'row' // column
+                }
+            });
+            this.current = this.items.length - 1;
+        },
+        addVideo() {
+            this.items.push({
+                component: 'video-component',
+                data: {
+                    video: require('@/assets/exampleVideo.mp4'),
+                    caption: '描述文字',
+                    color: '',
+                    background: '',
+                    fontSize: 14,
+                    textAlign: 'left',
+                    padding: 10,
+                    // height: null
+                }
+            });
+            this.current = this.items.length - 1;
+        },
+        addGoodsList() {
+            this.items.push({
+                component: 'goodslist-component',
+                data: {
+                    layout: 'wrap', // column
+                    items: [
+                        {'picture': '', 'title': '这是一个标题', 'desc': '这是一个简介', 'price': '¥100.00'}
+                    ],
+                    background: '',
+                    titleFontSize: 14,
+                    descFontSize: 12,
+                    priceFontSize: 14,
+                    titleTextAlign: 'left',
+                    descTextAlign: 'left',
+                    priceTextAlign: 'left',
+                    titleColor: '#202020',
+                    descColor: '#9b9b9b',
+                    priceColor: '#ff5722',
+                    titleFontWeight: 'bold',
+                    descFontWeight: 'normal',
+                    priceFontWeight: 'bold',
                 }
             });
             this.current = this.items.length - 1;
@@ -169,6 +374,7 @@ export default {
         },
         clickCurrent(index) {
             this.current = index;
+            this.innerItem = -1;
         },
         deleteItem(index) {
             this.items.splice(index, 1);
@@ -186,6 +392,39 @@ export default {
         onCopy() {
             this.$message('复制成功');
         },
+        handleChange(file) {
+            // console.log(file);
+            const reader = new FileReader();
+            reader.readAsDataURL(file.raw);
+            reader.onload = (e) => {
+                this.addPicture(e.target.result);
+            }
+        },
+        handleCarouselChange(file) {
+            // console.log(file);
+            const reader = new FileReader();
+            reader.readAsDataURL(file.raw);
+            reader.onload = (e) => {
+                this.addCarousel({
+                    name: file.name,
+                    url: e.target.result
+                });
+            }
+        },
+        clickInnerItem(data) {
+            if(!data.stop) {
+                this.current = data.outerIndex;
+            }
+            this.innerItem = data.index;
+        },
+        deleteInnerItem(data) {
+            const items = this.items[data.outerIndex].data.items;
+            items.splice(data.index, 1);
+            this.innerItem = -1;
+            if(items.length == 0) {
+                this.items.splice(data.outerIndex, 1);
+            }
+        }
     },
 }
 </script>

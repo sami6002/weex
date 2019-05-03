@@ -43,7 +43,7 @@
                                     <p>搜索模块</p>
                                 </li>
                                 <li class="item">
-                                    <el-upload action=""
+                                    <!-- <el-upload action=""
                                         :on-change="handleChange"
                                         :auto-upload="false"
                                         :show-file-list="false"
@@ -51,10 +51,12 @@
                                         accept="image/jpeg,image/jpg,image/gif,image/png,image/bmp">
                                         <i class="el-icon-picture"></i>
                                         <p>图片模块</p>
-                                    </el-upload>
+                                    </el-upload> -->
+                                    <i class="el-icon-picture-outline" @click="addPicture()"></i>
+                                    <p>图片模块</p>
                                 </li>
                                 <li class="item">
-                                    <el-upload action=""
+                                    <!-- <el-upload action=""
                                         :on-change="handleCarouselChange"
                                         :auto-upload="false"
                                         :show-file-list="false"
@@ -62,23 +64,29 @@
                                         accept="image/jpeg,image/jpg,image/gif,image/png,image/bmp">
                                         <i class="el-icon-picture"></i>
                                         <p>轮播模块</p>
-                                    </el-upload>
+                                    </el-upload> -->
+                                    <i class="el-icon-files" @click="addCarousel()"></i>
+                                    <p>轮播模块</p>
                                 </li>
                                 <li class="item">
                                     <i class="el-icon-menu" @click="navVisible=true"></i>
                                     <p>导航模块</p>
                                 </li>
                                 <li class="item" @click="addTitle()">
-                                    <i class="el-icon-menu"></i>
+                                    <i class="el-icon-chat-line-square"></i>
                                     <p>标题模块</p>
                                 </li>
                                 <li class="item" @click="addVideo()">
-                                    <i class="el-icon-menu"></i>
+                                    <i class="el-icon-video-camera-solid"></i>
                                     <p>视频模块</p>
                                 </li>
                                 <li class="item" @click="addGoodsList()">
-                                    <i class="el-icon-menu"></i>
+                                    <i class="el-icon-s-grid"></i>
                                     <p>商品列表</p>
+                                </li>
+                                <li class="item" @click="addFixedIcon()">
+                                    <i class="el-icon-star-on"></i>
+                                    <p>悬浮按钮</p>
                                 </li>
                             </ul>
                         </el-collapse-item>
@@ -199,6 +207,10 @@ import Video from '@/components/Video.vue'
 import VideoSet from '@/components/VideoSet.vue'
 import GoodsList from '@/components/GoodsList.vue';
 import GoodsListSet from '@/components/GoodsListSet.vue';
+import FixedIcon from '@/components/FixedIcon.vue';
+import FixedIconSet from '@/components/FixedIconSet.vue';
+
+import videoUrl from "@/assets/exampleVideo.mp4";
 
 export default {
     name: 'index',
@@ -221,6 +233,8 @@ export default {
         'set-video-component': VideoSet,
         'goodslist-component': GoodsList,
         'set-goodslist-component': GoodsListSet,
+        'fixedicon-component': FixedIcon,
+        'set-fixedicon-component': FixedIconSet,
         draggable,
     },
     data() {
@@ -269,7 +283,7 @@ export default {
             });
             this.current = this.items.length - 1;
         },
-        addPicture(url) {
+        addPicture(url='') {
             this.items.push({
                 component: 'picture-component',
                 data: {
@@ -285,11 +299,11 @@ export default {
             });
             this.current = this.items.length - 1;
         },
-        addCarousel(item) {
+        addCarousel(item='') {
             this.items.push({
                 component: 'carousel-component',
                 data: {
-                    images: [item],
+                    images: [],
                     height: 180,
                 }
             });
@@ -332,7 +346,7 @@ export default {
             this.items.push({
                 component: 'video-component',
                 data: {
-                    video: require('@/assets/exampleVideo.mp4'),
+                    video: videoUrl,
                     caption: '描述文字',
                     color: '',
                     background: '',
@@ -368,6 +382,27 @@ export default {
                 }
             });
             this.current = this.items.length - 1;
+        },
+        addFixedIcon() {
+            const index = this.items.findIndex(el => el.component == 'fixedicon-component');
+            const item = {
+                icon: 'share',
+                text: '分享',
+                background: '',
+                color: ''
+            }
+            if(index == -1) {
+                this.items.push({
+                    component: 'fixedicon-component',
+                    data: {
+                        items: [item]
+                    }
+                });
+                this.current = this.items.length - 1;
+            }else {
+                this.items[index].data.items.push(item);
+                this.current = index;
+            }
         },
         changeData(args, item) {
             item.data = args[0];
@@ -425,6 +460,9 @@ export default {
                 this.items.splice(data.outerIndex, 1);
             }
         }
+    },
+    mounted() {
+        console.log(videoUrl);
     },
 }
 </script>

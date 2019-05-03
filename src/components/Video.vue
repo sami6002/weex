@@ -2,7 +2,10 @@
     <div class="edit-item video-container">
         <div class="item-con">
             <div class="video">
-                <video :src="video" width="100%" controls="controls"></video>
+                <video width="100%" controls="controls">
+                    <source :src="video" />
+                    你的浏览器不支持H5播放器
+                </video>
             </div>
             <div class="caption" :style="style">{{caption}}</div>
         </div>

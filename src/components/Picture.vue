@@ -21,6 +21,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-color: #f1f1f1;
 }
 </style>
 

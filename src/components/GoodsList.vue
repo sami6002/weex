@@ -11,9 +11,9 @@
                                 <p class="description" :style="descStyle">{{item.desc}}</p>
                                 <p class="price" :style="priceStyle">{{item.price}}</p>
                             </div>
-                        </div>
-                        <div class="delete-icon" @click.stop="deleteGoods(item, index)">
-                            <span class="el-icon-close"></span>
+                            <div class="delete-icon" @click.stop="deleteGoods(item, index)">
+                                <span class="el-icon-minus"></span>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -37,11 +37,12 @@
             position: relative;
             .delete-icon {
                 position: absolute;
-                top: 0;
-                left: 0;
-                background: rgba(0,0,0,0.4);
+                top: 4px;
+                left: 4px;
+                background: #e99797;
                 color: #ffffff;
                 font-size: 20px;
+                border-radius: 50%;
                 cursor: pointer;
                 z-index: 10;
             }

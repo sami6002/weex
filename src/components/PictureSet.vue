@@ -4,7 +4,7 @@
             <span>图片模块</span>
         </div>
         <el-form label-width="90px">
-            <el-form-item label="图片：">
+            <!-- <el-form-item label="图片：">
                 <el-upload
                     class="upload-demo"
                     action=""
@@ -15,6 +15,9 @@
                     accept="image/jpeg,image/jpg,image/gif,image/png,image/bmp">
                     <el-button size="small" type="primary">修改图片</el-button>
                 </el-upload>
+            </el-form-item> -->
+            <el-form-item label="图片链接：">
+                <el-input v-model="form.picture" @change="changeData()"></el-input>
             </el-form-item>
             <el-form-item label="图片高度：">
                 <el-slider v-model="form.height" :min="100" :max="414" @change="changeData()" :show-input="true"></el-slider>

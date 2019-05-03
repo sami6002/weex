@@ -3,7 +3,7 @@
         <div class="item-con">
             <el-carousel :height="height + 'px'" arrow="never">
                 <el-carousel-item v-for="(item, index) in images" :key="index">
-                    <div class="carousel-item" :style="{'background-image': 'url(' + item.url + ')'}"></div>
+                    <div class="carousel-item" :style="{'background-image': 'url(' + item + ')'}"></div>
                 </el-carousel-item>
             </el-carousel>
         </div>
@@ -17,7 +17,7 @@
 
 <style lang="scss" scoped>
 .item-con {
-    // background-color: #ffffff;
+    background-color: #f1f1f1;
     // padding: 8px 12px;
 }
 .carousel-item {

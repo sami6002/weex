@@ -4,7 +4,7 @@
             <span>视频模块</span>
         </div>
         <el-form label-width="90px">
-            <el-form-item label="图片：">
+            <!-- <el-form-item label="图片：">
                 <el-upload
                     class="upload-demo"
                     action=""
@@ -16,10 +16,11 @@
                     accept=".mp4,.qlv,.qsv,.ogg,.flv,.avi,.wmv,.rmvb,.mpeg4,.rm,.mkv">
                     <el-button size="small" type="primary">上传视频</el-button>
                 </el-upload>
-            </el-form-item>
-            <!-- <el-form-item label="视频高度：">
-                <el-slider v-model="form.height" :min="100" :max="414" @change="changeData()" :show-input="true"></el-slider>
             </el-form-item> -->
+
+            <el-form-item label="视频链接：">
+                <el-input v-model="form.video" @change="changeData()"></el-input>
+            </el-form-item>
             <el-form-item label="文字：">
                 <el-input v-model="form.caption" @keyup.native="changeData()"></el-input>
             </el-form-item>

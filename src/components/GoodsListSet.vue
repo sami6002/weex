@@ -23,10 +23,15 @@
             <div slot="header" class="clearfix">
                 <span>商品项</span>
             </div>
+            <el-form label-width="60px" @submit.native.prevent>
+                <el-form-item label="图片：">
+                    <el-input v-model="form.items[innerItem]['picture']" @change="changeData()"></el-input>
+                </el-form-item>
+            </el-form>
             <el-tabs v-model="activeName">
                 <el-tab-pane :label="tab.label" :name="tab.name" v-for="tab in tabs" :key="tab.name">
-                    <el-form label-width="60px" @submit.prevent>
-                        <el-form-item label="图片：">
+                    <el-form label-width="60px" @submit.native.prevent>
+                        <!-- <el-form-item label="图片：">
                             <el-upload
                                 class="upload-demo"
                                 action=""
@@ -37,9 +42,9 @@
                                 accept="image/jpeg,image/jpg,image/gif,image/png,image/bmp">
                                 <el-button size="small" type="primary">选择图片</el-button>
                             </el-upload>
-                        </el-form-item>
+                        </el-form-item> -->
                         <el-form-item label="文字：">
-                            <el-input v-model="form.items[innerItem][tab.name]"></el-input>
+                            <el-input v-model="form.items[innerItem][tab.name]" @change="changeData()"></el-input>
                         </el-form-item>
                         <el-form-item label="大小：">
                             <el-slider v-model="form[tab.name+'FontSize']" :min="12" :max="20" @change="changeData()"></el-slider>

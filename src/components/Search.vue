@@ -2,7 +2,7 @@
     <div class="edit-item search-container">
         <div class="item-con" :style="{backgroundColor: background}">
             <div class="search-box" :style="{backgroundColor: inputBackground, borderColor: borderColor}">
-                <label class="icon-search"></label>
+                <label class="myicon-search"></label>
                 <input class="input" :placeholder="placeholder" />
             </div>
         </div>
@@ -26,7 +26,7 @@
         border: 1px solid #f2f2f2;
         padding: 5px 10px;
         border-radius: 15px;
-        .icon-search {
+        .myicon-search {
             height: 16px;
             width: 16px;
             background: url('../assets/images/search.svg') no-repeat center/contain;

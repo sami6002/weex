@@ -1,0 +1,4 @@
+/* pages/components/empty/empty.wxss */
+.empty-component {
+  width: 100%;
+}

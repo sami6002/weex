@@ -1,0 +1,5 @@
+<!--pages/components/picture/index.wxml-->
+<view class="picture-component">
+  <view class="picture" style="background-image: url({{data.picture}}); height: {{data.height}}px"></view>
+  <text class="caption" style="font-size: {{data.fontSize}}px; color: {{data.color}}; background: {{data.background}}; text-align: {{data.textAlign}}; padding: {{data.padding}}px;">{{data.caption}}</text>
+</view>

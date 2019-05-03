@@ -1,0 +1,8 @@
+<!--pages/components/video/index.wxml-->
+<view class="video-component">
+  <view class="video">
+      <video src="{{data.video}}" width="100%" controls="controls">
+      </video>
+  </view>
+  <view class="caption" style="color: {{data.color}}; background: {{data.background}}; font-size: {{data.fontSize}}px; text-align: {{data.textAlign}}; padding: {{data.padding}}px;">{{caption}}</view>
+</view>

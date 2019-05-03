@@ -1,0 +1,16 @@
+/* pages/components/picture/index.wxss */
+.picture-component {
+  /* display: block; */
+  width: 100%;
+}
+.picture {
+  display: block;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.caption {
+  display: block;
+  width: 100%;
+}

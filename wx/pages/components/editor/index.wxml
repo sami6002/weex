@@ -1,0 +1,5 @@
+<!--pages/components/editor/editor.wxml-->
+<import src="../../../wxParse/wxParse.wxml"/>
+<view class='editor-component'>
+  <template class='editor-component' is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>

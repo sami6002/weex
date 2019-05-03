@@ -1,0 +1,17 @@
+<!--pages/components/goodslist/index.wxml-->
+<view class='goodslist-component'>
+  <view class="goods-list">
+    <view class="list list-{{data.layout}}" style="flex-flow: {{data.layout}};background: {{data.background}}">
+        <view class="item" wx:for="{{data.items}}" wx:key="index">
+            <view class="wrap">
+                <view class="image" style="background-image: url({{item.picture}})"></view>
+                <view class="info">
+                    <text class="title" style="font-size: {{data.titleFontSize}}px; font-weight: {{data.titleFontWeight}}; text-align: {{data.titleTextAlign}}; color: {{data.titleColor}};">{{item.title}}</text>
+                    <text class="description" style="font-size: {{data.descFontSize}}px; font-weight: {{data.descFontWeight}}; text-align: {{data.descTextAlign}}; color: {{data.descColor}};">{{item.desc}}</text>
+                    <text class="price" style="font-size: {{data.priceFontSize}}px; font-weight: {{data.priceFontWeight}}; text-align: {{data.priceTextAlign}}; color: {{data.priceColor}};">{{item.price}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+  </view>
+</view>

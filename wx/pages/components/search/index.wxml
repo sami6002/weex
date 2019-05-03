@@ -1,0 +1,7 @@
+<!--pages/components/search/index.wxml-->
+<view class="search-component" style="background-color: {{data.background}}">
+  <view class="search-box" style="background-color: {{data.inputBackground}}; border-color: {{data.borderColor}}">
+    <image class="icon-search" src='images/search.svg'></image>
+    <input class="input" type="text" confirm-type="search" placeholder="{{data.placeholder}}" bindconfirm="search" />
+  </view>
+</view>

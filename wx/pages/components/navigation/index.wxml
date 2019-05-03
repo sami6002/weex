@@ -1,0 +1,11 @@
+<!--pages/components/navigation/index.wxml-->
+<view class='navigation-component'>
+  <view class="navigation">
+    <view class="list list-{{data.col}}" style="background-color: {{data.background}}">
+        <view class="item" wx:for="{{data.items}}" wx:key="index">
+            <view class="icon iconfont icon-{{item.icon}}" style="background-color: {{item.background}}"></view>
+            <text class="text" style="color: {{data.color}}">{{item.label}}</text>
+        </view>
+    </view>
+  </view>
+</view>

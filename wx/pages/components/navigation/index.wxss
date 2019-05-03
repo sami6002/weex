@@ -1,0 +1,52 @@
+/* pages/components/navigation/index.wxss */
+@import '../../../icons/iconfont.wxss';
+.navigation-component {
+  /* display: block; */
+  width: 100%;
+}
+.list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 6px;
+  box-sizing: border-box;
+}
+.list .item {
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+}
+.list .item:nth-child(1) .icon { background-color: #5fafef; }
+.list .item:nth-child(2) .icon { background-color: #f6ce6d; }
+.list .item:nth-child(3) .icon { background-color: #97dc48; }
+.list .item:nth-child(4) .icon { background-color: #f198b1; }
+.list .item:nth-child(5) .icon { background-color: #fac286; }
+.list .item:nth-child(6) .icon { background-color: #f8986e; }
+.list .item:nth-child(7) .icon { background-color: #7fd0d3; }
+.list .item:nth-child(8) .icon { background-color: #f19f43; }
+.list .item:nth-child(9) .icon { background-color: #5caaf8; }
+.list .item:nth-child(10) .icon { background-color: #f8986e; }
+.list .item .icon {
+  height: 44px;
+  width: 44px;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 44px;
+  border-radius: 14px;
+  background-color: #5fafef;
+  margin: 4px auto;
+}
+
+.list .item .text {
+  color: #4a4a4a;
+  font-size: 14px;
+  padding-bottom: 4px;
+}
+
+.list-4 .item {
+  width: 25%;
+}
+.list-5 .item {
+  width: 20%;
+}

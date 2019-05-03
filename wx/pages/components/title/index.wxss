@@ -1,0 +1,21 @@
+/* pages/components/title/index.wxss */
+.title-component {
+  width: 100%;
+}
+.title-wrap {
+    display: flex;
+    align-items: baseline;
+    line-height: 1.35;
+    padding: 10px 14px;
+}
+.title-wrap .title {
+  font-weight: bold;
+  color: #202020;
+  font-size: 18px;
+  padding-right: 10px;
+}
+.title-wrap  .description {
+  font-weight: normal;
+  color: #9b9b9b;
+  font-size: 14px;
+}

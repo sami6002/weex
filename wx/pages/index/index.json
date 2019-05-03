@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "empty-component": "../components/empty/index",
+    "editor-component": "../components/editor/index",
+    "search-component": "../components/search/index",
+    "picture-component": "../components/picture/index",
+    "carousel-component": "../components/carousel/index",
+    "navigation-component": "../components/navigation/index",
+    "title-component": "../components/title/index",
+    "video-component": "../components/video/index",
+    "goodslist-component": "../components/goodslist/index",
+    "fixedicon-component": "../components/fixedicon/index"
+  }
+}

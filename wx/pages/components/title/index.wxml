@@ -1,0 +1,7 @@
+<!--pages/components/title/index.wxml-->
+<view class="title-component">
+  <view class="title-wrap" style="flex-flow: {{data.flow}}">
+    <text class="title">{{data.title}}</text>
+    <text class="description">{{data.description}}</text>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+@import "/wxParse/wxParse.wxss";
+/* pages/components/editor/index.wxss */
+.editor-component {
+  /* display: block; */
+  box-sizing: border-box;
+  padding: 14px;
+}

@@ -1,0 +1,18 @@
+<!--pages/components/carousel/index.wxml-->
+<view class="carousel-component">
+  <swiper
+    indicator-dots="true"
+    autoplay="true"
+    interval="3000"
+    duration="500"
+    indicator-color="rgba(255,255,255,0.48)"
+    indicator-active-color="#ffffff"
+    style='height: {{data.height}}px'
+  >
+    <block wx:for="{{data.images}}" wx:key="index">
+      <swiper-item>
+        <view class='carousel-item' style='background-image: url({{item}})'></view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>

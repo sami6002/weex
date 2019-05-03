@@ -1,0 +1,2 @@
+<!--pages/components/empty/index.wxml-->
+<view class="empty-component" style="height: {{data.height}}px; background: {{data.background}}"></view>

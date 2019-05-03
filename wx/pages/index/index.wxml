@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<view>
+  <block wx:for="{{items}}" wx:key="{{index}}">
+    <block wx:if="{{item.component == 'empty-component'}}">
+      <empty-component data="{{item.data}}"></empty-component>
+    </block>
+    <block wx:elif="{{item.component == 'editor-component'}}">
+      <editor-component data="{{item.data}}"></editor-component>
+    </block>
+    <block wx:elif="{{item.component == 'search-component'}}">
+      <search-component data="{{item.data}}"></search-component>
+    </block>
+    <block wx:elif="{{item.component == 'picture-component'}}">
+      <picture-component data="{{item.data}}"></picture-component>
+    </block>
+    <block wx:elif="{{item.component == 'carousel-component'}}">
+      <carousel-component data="{{item.data}}"></carousel-component>
+    </block>
+    <block wx:elif="{{item.component == 'navigation-component'}}">
+      <navigation-component data="{{item.data}}"></navigation-component>
+    </block>
+    <block wx:elif="{{item.component == 'title-component'}}">
+      <title-component data="{{item.data}}"></title-component>
+    </block>
+    <block wx:elif="{{item.component == 'video-component'}}">
+      <video-component data="{{item.data}}"></video-component>
+    </block>
+    <block wx:elif="{{item.component == 'goodslist-component'}}">
+      <goodslist-component data="{{item.data}}"></goodslist-component>
+    </block>
+    <block wx:elif="{{item.component == 'fixedicon-component'}}">
+      <fixedicon-component data="{{item.data}}"></fixedicon-component>
+    </block>
+  </block>
+</view>

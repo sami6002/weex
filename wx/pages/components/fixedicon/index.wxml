@@ -1,0 +1,7 @@
+<!--pages/components/fixedicon/index.wxml-->
+<view class="item-con fixedicon-container">
+  <view wx:for="{{data.items}}" wx:key="index" class="fixed-icon" style="background: {{item.background}}; color: {{item.color}}" bindtap="tap" data-index="{{index}}">
+    <view class="icon iconfont icon-{{item.icon}}"></view>
+    <text class="text">{{item.text}}</text>
+  </view>
+</view>

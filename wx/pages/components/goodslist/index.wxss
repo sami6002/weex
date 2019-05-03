@@ -1,0 +1,75 @@
+/* pages/components/goodslist/index.wxss */
+.goods-list .list {
+  display: flex;
+  align-items: stretch;
+  padding: 14px;
+}
+
+.goods-list .list .item .wrap{
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+  background: #ffffff;
+  position: relative;
+}
+
+.goods-list .list .image {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f4f4f4;
+}
+
+.goods-list .list .image::before {
+    display: block;
+    content: '';
+    padding-bottom: 100%;
+}
+
+.goods-list .list .info {
+  line-height: 20px;
+}
+.goods-list .list .title, .goods-list .list .description {
+  display: block;
+  max-height: 40px;
+  overflow: hidden;
+}
+.goods-list .list .price {
+  display: block;
+  padding-top: 4px;
+}
+
+.goods-list .list-wrap {
+  justify-content: space-between;
+  flex-wrap: wrap; 
+}
+
+.goods-list .list-wrap .item {
+  width: 50%;
+  padding-bottom: 14px;
+  box-sizing: border-box;
+}
+.goods-list .list-wrap .item:nth-child(2n) {
+  padding-left: 7px;
+}
+.goods-list .list-wrap .item:nth-child(2n+1) {
+  padding-right: 7px;
+}
+.goods-list .list-wrap .item .info {
+  padding: 4px 8px;
+}
+
+.goods-list .list-column .item {
+  padding-bottom: 14px;
+}
+.goods-list .list-column .info {
+  padding-left: 14px;
+  flex: 1;
+  padding: 0px 14px;
+}
+.goods-list .list-column .wrap {
+  display: flex;
+  align-items: center;
+}
+.goods-list .list-column .image {
+  width: 100px;
+}

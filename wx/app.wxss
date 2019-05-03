@@ -1,0 +1,26 @@
+/**app.wxss**/
+.container-wrap {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  font-size: 14px;
+  line-height: 20px;
+}
+input {
+  font-size: 14px;
+  -webkit-appearance: none;
+  min-height: auto;
+}
+input::placeholder {
+  color: #8f8f8f;
+}
+input::-webkit-input-placeholder {
+  color: #8f8f8f;
+}
+input::-moz-placeholder {
+  color: #8f8f8f;
+}
+input:-ms-input-placeholder {
+  color: #8f8f8f;
+}

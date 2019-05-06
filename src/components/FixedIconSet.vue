@@ -1,20 +1,23 @@
 <template>
     <el-card class="box-card">
         <div slot="header" class="clearfix">
-            <span>空白模块</span>
+            <span>悬浮按钮</span>
         </div>
-        <el-form label-width="60px" v-for="(item,index) in form.items" :key="index">
+        <el-form label-width="60px" :inline="true" v-for="(item,index) in form.items" :key="index">
             <el-form-item label="图标：">
                 <el-button v-model="item.icon" @click="changeIcon(index)">选择</el-button>
-            </el-form-item>
-            <el-form-item label="文本：">
-                <el-input v-model="item.text" @change="changeData()"></el-input>
             </el-form-item>
             <el-form-item label="背景：">
                 <el-color-picker v-model="item.background" @change="changeData()"></el-color-picker>
             </el-form-item>
             <el-form-item label="颜色：">
                 <el-color-picker v-model="item.color" @change="changeData()"></el-color-picker>
+            </el-form-item>
+            <el-form-item label="文本：">
+                <el-input style="width: 100%" v-model="item.text" @change="changeData()"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="danger" @click="deleteIcon(index);">删除</el-button>
             </el-form-item>
         </el-form>
 
@@ -91,6 +94,15 @@ export default {
         changeIcon(index) {
             this.dialogVisible = true;
             this.currentInner = index;
+        },
+        deleteIcon(index) {
+            this.form.items.splice(index, 1);
+            if(this.form.items.length == 0) {
+                this.$emit('deleteItem');
+            }else {
+                this.changeData();
+            }
+            
         }
     },
     created () {

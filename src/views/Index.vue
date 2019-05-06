@@ -119,6 +119,7 @@
                             <div :is="'set-' + item.component" 
                                 :data="item.data" 
                                 @changeData="changeData(arguments, item)" 
+                                @deleteItem="deleteItem(index)"
                                 v-if="index == current" 
                                 :innerItem="innerItem"
                                 :key="'set-' + item.component + '-' + index"></div>
